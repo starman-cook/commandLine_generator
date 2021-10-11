@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #4e4e4e;
+}
+
+.container {
+    max-width: 1008px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background: #4e4e4e;
+}
+
+.header__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header__logo {
+    background: url('../images/attractor-school-log.svg')center /contain no-repeat;
+    width: 250px;
+    height: 200px;
+}
+
+.header__text {
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.intro {
+    background: white;
+    position: relative;
+}
+
+.intro__container {
+    left: 50%;
+    position: absolute;
+    top: 30%;
+    transform: translate(-50%, 0);
+    width: 80vw;
+}
+
+.intro__image {
+    width: 100%;
+    max-height: 500px;
+    opacity: 0.2;
+    object-fit: cover;
+    display: block;
+}
+
+.intro__text {
+    color: #4e4e4e;
+    line-height: 30px;
+}
+
+@media screen and (max-width: 650px) {
+    .intro__container {
+        position: relative;
+    }
+}
+
+.title {
+    color: white;
+    text-align: center;
+}
+
+/*.formBlock {}*/
+/*.formBlock__container {}*/
+
+.formBlock__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.formBlock__text {
+    margin: 20px 0 5px 0;
+    color: white;
+}
+
+.formBlock__input {
+    width: 200px;
+    padding: 15px;
+    margin: 5px 5px 30px 0;
+    border: none;
+    background: whitesmoke;
+    border-radius: 3px;
+}
+.formBlock__DatesBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.formBlock__DatesBlock--inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.formBlock__select {
+    width: 200px;
+    padding: 15px;
+    border-radius: 3px;
+    background: whitesmoke;
+    margin: 5px 10px 30px 0;
+}
+
+/*.formBlock__DatesBlock--time {}*/
+
+.formBlock__input--hours {
+    width: 50px;
+}
+
+.formBlock__input--minutes {
+    width: 50px;
+}
+
+.formBlock__button {
+    background: #dc5e03;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+.formBlock__button:hover {
+    background: #f67825;
+}
+
+.formBlock__button:active {
+    transform: scale(0.97);
+}
+
+.formBlock__textTimeDots {
+    color: white;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.formBlock__DatesBlock--deleteBtn {
+    margin: 5px 5px 30px 0;
+}
+
+.formBlock__instruction {
+    color: white;
+    text-align: center;
+}
+
+hr {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.resultBuild {
+    background: black;
+    padding: 30px 0;
+}
+
+.resultBuild__text {
+    color: white;
+}
+
+.resultBuild__textArea {
+    resize: none;
+    padding: 10px;
+    width: 70vw;
+}
+
+.adminForm {
+    padding: 40px 0;
+}
+/*.adminForm__container {}*/
+.adminForm__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.adminForm__input {
+    width: 200px;
+    padding: 15px;
+    margin: 5px 5px 30px 0;
+    border: none;
+    background: whitesmoke;
+    border-radius: 3px;
+}
+.adminForm__button {
+    background: #dc5e03;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+.adminForm__button:hover {
+    background: #f67825;
+}
+
+.adminForm__instruction {
+    color: white;
+    text-align: center;
+}
+
+.adminForm__button:active {
+    transform: scale(0.97);
+}
+

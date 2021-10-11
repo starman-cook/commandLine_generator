@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Notify AttractorSchool Bot Command Generator</title>
+</head>
+
+<body>
+
+    <!--HEADER WITH SCHOOL LOGO-->
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo"></div>
+            <p class="header__text">Notify AttractorSchool Bot Command Generator</p>
+        </div>
+    </header>
+
+
+    <!--INTRODUCTION BLOCK-->
+    <div class="intro">
+        <img src="./images/intro.jpg" alt="introImageTelegram" class="intro__image">
+        <div class="container intro__container">
+            <p class="intro__text">Инструкция: это генератор команды для создания группы для бота уведомлений. Также
+                здесь можно сгенерировать команду для указания админа группы (кто ответсвенный из администрации, нужно
+                когда сообщения всякие о правилах школы и прочее приходит). Здесь все просто, в форме выбираете все что
+                вам нужно и нажимаете кнопку "Сгенерировать команду", потом копируете эту команду в чат где ваши
+                студенты и бот (бот должен быть админом!)</p>
+        </div>
+    </div>
+
+    <!--FORM FOR /BUILD COMMAND-->
+    <div class="formBlock">
+        <h2 class="title">Форма для генерации команды по созданию группы</h2>
+        <p class="formBlock__instruction">Все поля обязательны</p>
+        <div class="container formBlock__container">
+            <form id="form" class="formBlock__form">
+
+                <!--Ввод имени группы-->
+                <p class="formBlock__text">Укажите имя группы (без пробелов!!!)</p>
+                <input id="groupName" name="name" required type="text" class="formBlock__input" placeholder="Введите имя группы">
+                <hr>
+                <!--Ввод дней недели и времени основных занятий-->
+                <p class="formBlock__text">Укажите дни и время основных занятий</p>
+                <div id="lessonDateBlock" class="formBlock__DatesBlock">
+                    <div  class="formBlock__DatesBlock--inner">
+                        <select required  class="formBlock__select">
+                            <option selected disabled value="DEFAULT">Выберите день недели</option>
+                            <option value="1">Понедельник</option>
+                            <option value="2">Вторник</option>
+                            <option value="3">Среда</option>
+                            <option value="4">Четверг</option>
+                            <option value="5">Пятница</option>
+                            <option value="6">Суббота</option>
+                            <option value="7">Воскресенье</option>
+                        </select>
+                        <div class="formBlock__DatesBlock--time">
+                            <input required type="number" class="formBlock__input formBlock__input--hours" placeholder="Час">
+                            <span class="formBlock__textTimeDots">:</span>
+                            <input required type="number" class="formBlock__input formBlock__input--minutes" placeholder="Мин">
+                        </div>
+
+                    </div>
+                    <div class="formBlock__button" id="buttonLessonDate">Добавить еще день обучения</div>
+                    <hr>
+                </div>
+
+                <!--Ввод дней недели и времени вебинаров-->
+                <p class="formBlock__text">Укажите дни и время вебинаров</p>
+                <div id="webinarDateBlock" class="formBlock__DatesBlock">
+                    <div  class="formBlock__DatesBlock--inner">
+                        <select required  class="formBlock__select">
+                            <option selected disabled value="DEFAULT">Выберите день недели</option>
+                            <option value="1">Понедельник</option>
+                            <option value="2">Вторник</option>
+                            <option value="3">Среда</option>
+                            <option value="4">Четверг</option>
+                            <option value="5">Пятница</option>
+                            <option value="6">Суббота</option>
+                            <option value="7">Воскресенье</option>
+                        </select>
+                        <div class="formBlock__DatesBlock--time">
+                            <input required type="number" class="formBlock__input formBlock__input--hours" placeholder="Час">
+                            <span class="formBlock__textTimeDots">:</span>
+                            <input required type="number" class="formBlock__input formBlock__input--minutes" placeholder="Мин">
+                        </div>
+
+                    </div>
+                    <div class="formBlock__button" id="buttonWebinarDate">Добавить еще день вебинара</div>
+                    <hr>
+                </div>
+
+                <!--Ввод дат каникул-->
+                <div id="vacancesDateBlock" class="formBlock__DatesBlock">
+                    <p class="formBlock__text">Каникулы. Указывайте первый день каникул, далее бот сам прибавит неделю))</p>
+                    <div class="formBlock__DatesBlock--inner">
+                        <input required type="date" class="formBlock__input">
+                    </div>
+                    <div class="formBlock__button" id="buttonVacancesDate">Добавить еще дату каникул</div>
+                    <hr>
+                </div>
+
+                <!--Ввод текущей недели-->
+                <p class="formBlock__text">Если вы создаете группу за неделю (например, в день ориентации), то ставьте 0. Иначе, смотрите инструкцию в боте как можно посчитать вашу текущую неделю. Если что есть отдельная команда для выставления текущей недели, и в принципе можно методом тыка подогнать))</p>
+                <input id="weekNum" required type="number" class="formBlock__input" placeholder="Текущая неделя">
+
+                <!--Кнопка запуска генератора команды-->
+                <hr>
+                <button class="formBlock__button" id="buttonSubmit">Сгенерировать команду</button>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!--RESULT FOR BUILD COMMAND-->
+    <div class="resultBuild">
+        <div class="container">
+            <p class="resultBuild__text">Результат</p>
+            <textarea placeholder="Здесь будет отображён результат" class="resultBuild__textArea" id="resultBuild"></textarea>
+        </div>
+    </div>
+
+
+    <!--FORM TO GENERATE ADMIN SETUP COMMAND-->
+    <div class="adminForm">
+        <div class="container adminForm__container">
+            <h2 class="title">Форма для генерации команды добавки админа в группу</h2>
+            <p class="adminForm__instruction">Все поля не обязательны, главное имя))</p>
+            <form class="adminForm__form" id="adminForm">
+                <input required placeholder="Имя админа*" type="text" class="adminForm__input" id="adminName">
+                <input placeholder="Телефон админа" type="text" class="adminForm__input" id="adminPhone">
+                <input placeholder="Имя админа в телеграме" type="text" class="adminForm__input" id="adminTelegram">
+                <button id="submitAdminButton" class="adminForm__button">Сгенерировать команду</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!--RESULT FOR BUILD COMMAND-->
+    <div class="resultBuild">
+        <div class="container">
+            <p class="resultBuild__text">Результат</p>
+            <textarea placeholder="Здесь будет отображён результат" class="resultBuild__textArea" id="resultAdmin"></textarea>
+        </div>
+    </div>
+
+
+    <!--JS SCRIPTS-->
+    <script>
+        "use strict"
+
+        const lessonAddBtn = document.getElementById("buttonLessonDate")
+        const webinarAddBtn = document.getElementById("buttonWebinarDate")
+        const vacancesAddBtn = document.getElementById("buttonVacancesDate")
+
+        const form = document.getElementById("form")
+
+        const lessonDatesBlock = document.getElementById("lessonDateBlock")
+        const webinarDatesBlock = document.getElementById("webinarDateBlock")
+        const vacancesDatesBlock = document.getElementById("vacancesDateBlock")
+
+        const groupName = document.getElementById("groupName")
+        const weekNum = document.getElementById("weekNum")
+
+
+        const buildInnerDateBlock = () => {
+            const frame = document.createElement('div')
+            frame.classList.add('formBlock__DatesBlock--inner')
+            frame.innerHTML = `        <select required  class="formBlock__select">
+                                            <option selected disabled value="DEFAULT">Выберите день недели</option>
+                                            <option value="1">Понедельник</option>
+                                            <option value="2">Вторник</option>
+                                            <option value="3">Среда</option>
+                                            <option value="4">Четверг</option>
+                                            <option value="5">Пятница</option>
+                                            <option value="6">Суббота</option>
+                                            <option value="7">Воскресенье</option>
+                                        </select>
+                                        <div class="formBlock__DatesBlock--time">
+                                            <input required type="number" class="formBlock__input formBlock__input--hours" placeholder="Час">
+                                            <span class="formBlock__textTimeDots">:</span>
+                                            <input required type="number" class="formBlock__input formBlock__input--minutes" placeholder="Мин">
+                                        </div>`
+            const deleteBtn = document.createElement("div")
+            deleteBtn.classList.add('formBlock__DatesBlock--deleteBtn')
+            deleteBtn.classList.add('formBlock__button')
+            deleteBtn.innerText = "Удалить"
+            deleteBtn.addEventListener("click", () => {
+                frame.remove()
+            })
+            frame.append(deleteBtn)
+                    return frame
+        }
+
+        const buildVacancesBlock = () => {
+            const frame = document.createElement('div')
+            frame.classList.add('formBlock__DatesBlock--inner')
+            frame.innerHTML = `<input required type="date" class="formBlock__input">
+`
+            const deleteBtn = document.createElement("div")
+            deleteBtn.classList.add('formBlock__DatesBlock--deleteBtn')
+            deleteBtn.classList.add('formBlock__button')
+            deleteBtn.innerText = "Удалить"
+            deleteBtn.addEventListener("click", () => {
+                frame.remove()
+            })
+            frame.append(deleteBtn)
+            return frame
+        }
+
+        lessonAddBtn.addEventListener("click", () => {
+            lessonDatesBlock.insertBefore(buildInnerDateBlock(), lessonDatesBlock.children[1]);
+        })
+
+        webinarAddBtn.addEventListener("click", () => {
+            webinarDatesBlock.insertBefore(buildInnerDateBlock(), webinarDatesBlock.children[1]);
+        })
+
+        vacancesAddBtn.addEventListener("click", () => {
+            vacancesDatesBlock.insertBefore(buildVacancesBlock(), vacancesDatesBlock.children[2]);
+        })
+
+        const addZeroIfNeed = (num) => {
+            if (num.toString().length < 2) {
+                return `0${num}`
+            }
+            return num
+        }
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            let lessonDates = ""
+            for (let i = 0; i < lessonDatesBlock.children.length - 2; i++) {
+                const day = lessonDatesBlock.children[i].children[0].value
+                const hour = addZeroIfNeed(lessonDatesBlock.children[i].children[1].children[0].value)
+                const minutes = addZeroIfNeed(lessonDatesBlock.children[i].children[1].children[2].value)
+                lessonDates += `${day}-${hour}:${minutes}`
+                if (i < lessonDatesBlock.children.length - 3) {
+                    lessonDates += "/"
+                }
+            }
+
+            let webinarDates = ""
+            for (let i = 0; i < webinarDatesBlock.children.length - 2; i++) {
+                const day = webinarDatesBlock.children[i].children[0].value
+                const hour = addZeroIfNeed(webinarDatesBlock.children[i].children[1].children[0].value)
+                const minutes = addZeroIfNeed(webinarDatesBlock.children[i].children[1].children[2].value)
+                webinarDates += `${day}-${hour}:${minutes}`
+                if (i < webinarDatesBlock.children.length - 3) {
+                    webinarDates += "/"
+                }
+            }
+
+            let vacancesDates = ""
+            for (let i = 1; i < vacancesDatesBlock.children.length - 2; i++) {
+                const date = moment(vacancesDatesBlock.children[i].children[0].value, "YYYY-MM-DD").format("DD-MM-YYYY")
+                vacancesDates += `${date}`
+                if (i < vacancesDatesBlock.children.length - 3) {
+                    vacancesDates += "/"
+                }
+            }
+            document.getElementById("resultBuild").value = `/build_${groupName.value} ${lessonDates} ${webinarDates} ${vacancesDates} ${weekNum.value}`
+
+        })
+
+
+        document.getElementById("adminForm").addEventListener("submit", (e) => {
+            e.preventDefault()
+            let dataLine = ""
+            for (let i = 0; i < e.target.children.length - 1; i++) {
+                dataLine += e.target.children[i].value + " "
+            }
+            document.getElementById("resultAdmin").value = `/setadmin_${dataLine}`
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>
